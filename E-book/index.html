@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>电子书</title>
+	<style type="text/css">
+	    *{
+	    	margin: 0;
+	    	padding: 0;
+	    }
+	    li{
+	    	list-style: none;
+	    }
+	    .e-book{
+	    	margin:50px auto;
+	    	width: 400px;
+	    	height: 600px;
+	    	border: 1px solid #000;
+	    }
+	    .content{
+	    	width: 380px;
+	    	height: 500px;
+	    	background: #eee;
+	    	padding: 10px;
+	    	overflow: hidden;
+	    }
+	    .control{
+	    	width: 400px;
+	    	height: 80px;
+	    	background: #ccc;
+	    }
+	    .control .list{
+	    	height: 40px;
+	    }
+	    .control li{
+	    	float: left;
+	    	width: 30px;
+	    	line-height: 30px;
+	    	background: #456;
+	    	margin:5px 50px;
+	    	border-radius: 5px;
+	    	font-size: 14px;
+	    	color: #fff;
+	    	text-align: center;
+	    }
+	    .control span{
+	    	float: left;
+	    	width: 30px;
+	    	height: 30px;
+	    	margin: 5px 15px;
+	    }
+	    .control .red{
+	    	background: red;
+	    }
+	    .control .blue{
+	    	background: blue ;
+	    }
+	    .control .green{
+	    	background: green;
+	    }
+	    .control .yellow{
+	    	background: yellow;
+	    }
+	    .control .pink{
+	    	background: pink;
+	    }
+	</style>
+</head>
+<body>
+	<div class="e-book">
+         <div class="content">
+           &nbsp;&nbsp;&nbsp;&nbsp;敌方空间发呆就付款了较大安静了咖啡的垃圾卡疯了房间里的离开大附件里卡价格了很高啦就快点发垃圾费老大快速减肥了李会计法大陆及福利卡离开家饭店拉黑过了会考虑看大家发垃圾费啦<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;敌方空间发呆就付款了较大安静了咖啡的垃圾卡疯了房间里的离开大附件里卡价格了很高啦就快点发垃圾费老大快速减肥了李会计法大陆及福利卡离开家饭店拉黑过了会考虑看大家发垃圾费啦间发呆就付款了较大安静了咖啡的垃圾卡疯了房间里的离开大附件里卡价格了很高啦就快点发垃圾费老大快速减肥了李会计法大陆及福利卡离开家饭店拉黑过了会考虑看大间发呆就付款了较大安静了咖啡的垃圾卡疯了房间里的离开大附件里卡价格了很高啦就快点发垃圾费老大快速减肥了李会计法大陆及福利卡离开家饭店拉黑过了会考虑看大<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;安静了咖啡的垃圾卡疯了敌方空间发呆就付款了较大安静了咖啡的垃圾卡疯了房间里的离开大附件里卡安静了咖啡的垃圾卡疯了<br>
+         </div>
+         <div class="control">
+              <ul class="list">
+                 <li class="enlarge">A+</li>
+                 <li class="font">12</li>
+                 <li class="shrinkDown">A-</li>
+              </ul>
+              <span class="red"></span>
+              <span class="blue"></span>
+              <span class="green"></span>
+              <span class="yellow"></span>
+              <span class="pink"></span>
+         </div>
+	</div>
+	<script type="text/javascript" src="jquery.1.8.3.js"></script>
+	<script type="text/javascript">
+	     function Page() {
+	     	this.contentElem = $(".content");
+	     	this.enlargeElem = $(".enlarge");
+	     	this.fontElem = $(".font");
+	     	this.shrinkDownElem = $(".shrinkDown");
+	     	this.spanElem = $("span");
+	     }
+
+	     $.extend(Page.prototype, {
+	     	init: function() {
+	     		this.resetData();
+	     		this.bindEvents();
+	     	},
+
+	     	resetData: function() {
+	     		try{
+	     			if(localStorage.fontSize) {
+	     				this.contentElem.css("fontSize", localStorage.fontSize);
+	     			}
+	     			if(localStorage.background) {
+	     				this.contentElem.css("background", localStorage.background);
+	     			}
+	     		}catch(e){}
+	     	},
+
+	     	bindEvents: function() {
+	     		//this.fontElem.on("click", $.proxy(this.changeFontSize, this));
+	     		this.enlargeElem.on("click", $.proxy(this.enlarge, this));
+	     		this.shrinkDownElem.on("click", $.proxy(this.shrinkDown, this));
+	     		this.spanElem.on("click", $.proxy(this.changBackground, this));
+	     	},
+
+	     	enlarge: function() {
+	     		if(Number(this.fontElem.text()) >= 50) {
+	     			Number(this.fontElem.text()) = 50;
+	     		}
+	     		this.contentElem.css("fontSize", this.fontElem.text () + "px"); 
+	     		this.fontElem.text(Number(this.fontElem.text())+2);
+	     		fontSize = this.contentElem.css("fontSize");
+	     		try{
+	     			localStorage.fontSize = fontSize;
+	     		}catch(e){}
+	     	},
+
+	     	shrinkDown: function() {
+	     		if(Number(this.fontElem.text()) <= 10){
+	     			Number(this.fontElem.text()) = 10;
+
+	     		}
+	     		this.contentElem.css("fontSize", this.fontElem.text() + "px");
+	     		this.fontElem.text(Number(this.fontElem.text())-2);
+	     		fontSize = this.contentElem.css("fontSize");
+	     		try{
+	     			localStorage.fontSize = fontSize;    
+	     		}catch(e){}
+	     	},
+
+	     	changBackground: function(e) {
+	     		this.contentElem.css("background", $(e.target).css("background"));
+	     		background = this.contentElem.css("background");
+	     		try{
+	     			localStorage.background = background;
+	     		}catch(e){}
+	     	}
+	     })
+	     var page = new Page();
+	     page.init();
+	</script>
+</body>
+</html>
